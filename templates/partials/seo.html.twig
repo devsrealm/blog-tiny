@@ -1,0 +1,7 @@
+{% if data.getTitle() is not empty %}
+    {% do pimcore_head_title().set(data.getTitle()) %}
+{% endif %}
+
+{% if data.getShortDescription() is not empty %}
+    {% do pimcore_head_meta().setDescription(data.getShortDescription()) %}
+{% endif %}

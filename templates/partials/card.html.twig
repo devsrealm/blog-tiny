@@ -1,0 +1,23 @@
+{% if pagination.data is defined %}
+    <div class="col-md-10 col-lg-8 col-xl-7">
+        {% for post in pagination.data %}
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a href="post/{{ post.getSlug() is defined ? post.getSlug() : '' }}">
+                    <h2 class="post-title">{{ post.getTitle() }}</h2>
+                    {% if loop.first %}
+                        <h3 class="post-subtitle">{{ post.getShortDescription() }}</h3>
+                    {% endif %}
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    on {{ post.getDate().format('M d, y') }}
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+        {% endfor %}
+
+        {% include 'partials/pagination.html.twig' %}
+    </div>
+{% endif %}

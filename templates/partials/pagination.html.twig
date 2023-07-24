@@ -1,0 +1,11 @@
+<!-- New Post-->
+<div class="d-flex justify-content-between">
+    {%  if(pagination.prev_page is defined and pagination.prev_page is not empty) %}
+        <div class="d-flex  w-100 justify-content-start mb-4"><a class="btn btn-primary text-uppercase" href="{{ pagination.prev_page_url }}">← Newer Posts </a></div>
+    {%  endif %}
+
+    <!-- Previous Post-->
+    {%  if(pagination.next_page is defined and pagination.next_page is not empty) %}
+        <div class="d-flex w-100 justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{{ pagination.next_page_url }}">Older Posts →</a></div>
+    {% endif %}
+</div>

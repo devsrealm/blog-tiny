@@ -1,0 +1,50 @@
+{% extends 'layout/root.html.twig' %}
+
+{% block SEO %}
+    {% include 'partials/seo.html.twig' %}
+{% endblock %}
+
+{% block PAGE_HEADER %}
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('{{ data.getImage ? data.getImage().getImage().getFullPath() : '' }}')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center ">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="post-heading">
+                        <h1>{{ data.getTitle() }}</h1>
+                        <h2 class="subheading">{{ data.getShortDescription() }}</h2>
+                        <span class="meta">
+                                Posted by
+                                {% if posted_by is defined %}
+                                    <a href="#!">{{ posted_by }}</a>
+                                {% endif %}
+                                on {{ data.getDate().format('M d, y') }}
+                            </span>
+                    </div>
+                    <hr class="my-4">
+                    <div class="post-category">
+                        <span class="meta text-warning">Category:
+                            {% if data.getCategory().getSlug() is defined %}
+                                <a class="text-warning" href="/category/{{ data.getCategory().getSlug() }}">{{ data.getCategory().getTitle() }}</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block CONTENT_MAIN %}
+
+    <!-- Main Content-->
+    <article class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {{ data.getContent()|raw }}
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock %}

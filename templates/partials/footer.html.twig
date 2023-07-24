@@ -1,0 +1,41 @@
+<footer class="border-top">
+    <div class="container px-4 px-lg-5">
+
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+
+                <ul class="list-inline text-center">
+                    {% for social in pimcore_block('socials').iterator %}
+                        {% if editmode %}
+                            {{ pimcore_link('socialURL') }}
+                        {% else %}
+                            {% set socialURL = pimcore_link('socialURL') %}
+                            <li class="list-inline-item">
+                                <a href="{{ socialURL.getHref() }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab {{ socialURL.getClass() }} fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+
+
+                {# TimeStamp Example : {{ timestamp("Y-m-d") }} {{ timestamp("Y") }}#}
+                <div class="small text-center text-muted fst-italic">Copyright &copy; Devsrealm {{ timestamp("Y") }}</div>
+                <div class="site-info text-center">
+                    <span class="site-footer-info">
+                        {% for i in pimcore_iterate_block(pimcore_block('footer_link_block')) %}
+                            {{ pimcore_link('link') }}
+                        {% endfor %}
+                        {# {{ pimcore_link('data_protection') }} | {{ pimcore_link('imprint') }}#}
+                        <p>Address: {{ pimcore_input('address', {'width': 500}) }}</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
